@@ -1,2 +1,4 @@
 # cookie-stand
-Salmon Cookies
+Salmon Cookies 
+
+Lab by Paul Depew
