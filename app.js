@@ -1,6 +1,6 @@
 'use strict';
 
-// var locations = ['Seattle', 'Tokyo', 'Dubai', 'Paris', 'Lima' ] ;
+var locations = ['Seattle', 'Tokyo', 'Dubai', 'Paris', 'Lima' ] ;
 
 var Store = {
 
@@ -34,14 +34,23 @@ var Store = {
   // this is a function to create a currentHour Array
   hours: function() {
     for (var currentHour = 0; currentHour < this.hourOpen; currentHour++) {
-
       this.currentHour.push(currentHour);
       console.log(currentHour);
     } return [this.currentHour];
   } ,
 
-  // this is a function to write the totalPerHour to the document
+  // togetherColumn: function() {
+  //   Store.hours();
+  //   for (var i = 0; i <this.hourlySales.length; i++) {
+  //     var display = 'For the ' + this.currentHour[i] + ' hour ' + this.storeName + ' sold ' + this.hourlySales[i] + 'cookies' ;
+  //     var parent1 = document.getElementById( 'salesreport' );
+  //     var child1 = document.createElement('li');
+  //     parent1.appendChild(child1);
+  //     child1.textContent = display[i];
+  //   }
+  // }
 
+  // this is a function to write the totalPerHour to the document
   column1: function() {
     for (var i = 0 ; i < this.hourlySales.length; i++) {
       var parent1 = document.getElementById( 'salesreport');
@@ -52,7 +61,7 @@ var Store = {
   } ,
 
   //this is a function to write the current hour to the document
-  column2: function() { 
+  column2: function() {
     Store.hours();
     for (var index = 0 ; index < this.currentHour.length; index++) {
       var parent2 = document.getElementById('saleshours') ;
@@ -66,4 +75,5 @@ var Store = {
 Store.totalPerHour();
 Store.column1();
 Store.column2();
+// Store.togetherColumn();
 
