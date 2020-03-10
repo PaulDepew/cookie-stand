@@ -39,41 +39,41 @@ var Store = {
     } return [this.currentHour];
   } ,
 
-  // togetherColumn: function() {
-  //   Store.hours();
-  //   for (var i = 0; i <this.hourlySales.length; i++) {
-  //     var display = 'For the ' + this.currentHour[i] + ' hour ' + this.storeName + ' sold ' + this.hourlySales[i] + 'cookies' ;
-  //     var parent1 = document.getElementById( 'salesreport' );
-  //     var child1 = document.createElement('li');
-  //     parent1.appendChild(child1);
-  //     child1.textContent = display[i];
-  //   }
-  // }
-
-  // this is a function to write the totalPerHour to the document
-  column1: function() {
-    for (var i = 0 ; i < this.hourlySales.length; i++) {
-      var parent1 = document.getElementById( 'salesreport');
+  togetherColumn: function() {
+    Store.hours();
+    for (var i = 0; i <this.hourlySales.length; i++) {
+      var display = 'For the ' + this.currentHour[i] + ' hour ' + this.storeName + ' sold ' + this.hourlySales[i] + ' cookies!' ;
+      var parent1 = document.getElementById( 'salesreport' );
       var child1 = document.createElement('li');
       parent1.appendChild(child1);
-      child1.textContent = this.hourlySales[i];
-    }
-  } ,
-
-  //this is a function to write the current hour to the document
-  column2: function() {
-    Store.hours();
-    for (var index = 0 ; index < this.currentHour.length; index++) {
-      var parent2 = document.getElementById('saleshours') ;
-      var child2 = document.createElement('li');
-      parent2.appendChild(child2);
-      child2.textContent = this.currentHour[index];
+      child1.textContent = display;
     }
   }
+
+  // // this is a function to write the totalPerHour to the document
+  // column1: function() {
+  //   for (var i = 0 ; i < this.hourlySales.length; i++) {
+  //     var parent1 = document.getElementById( 'salesreport');
+  //     var child1 = document.createElement('li');
+  //     parent1.appendChild(child1);
+  //     child1.textContent = this.hourlySales[i];
+  //   }
+  // } ,
+
+  // //this is a function to write the current hour to the document
+  // column2: function() {
+  //   Store.hours();
+  //   for (var index = 0 ; index < this.currentHour.length; index++) {
+  //     var parent2 = document.getElementById('saleshours') ;
+  //     var child2 = document.createElement('li');
+  //     parent2.appendChild(child2);
+  //     child2.textContent = this.currentHour[index];
+  //   }
+  // }
 } ;
 
 Store.totalPerHour();
-Store.column1();
-Store.column2();
-// Store.togetherColumn();
+// Store.column1();
+// Store.column2();
+Store.togetherColumn();
 
