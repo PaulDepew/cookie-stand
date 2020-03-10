@@ -11,7 +11,6 @@ var Store = {
   cookiesPerCustomer: 6.3 ,
   hourlySales: [],
   currentHour: [],
-  
 
   totalPerHour: function() {
     // this makes the function run 1 per hour open
@@ -24,17 +23,14 @@ var Store = {
       // this finds the hourly sales total by multiplying cookiesPerCustomer by custPerHour
       var hourlySales = Math.floor(this.cookiesPerCustomer * custPerHour) ;
 
-      // this creates 2 arrays  pairing of current hours and hourly sales
-      // hourlySales = [hourlySales];
-      // currentHour = [currentHour];
+      // this creates 1 array of average hourly sales
       this.hourlySales.push(hourlySales);
       console.log(hourlySales);
       console.log(currentHour);
     } return [this.hourlySales];
   } ,
 
-  display: totalPerHour()[0],
-  display2: this.hours()[0],
+
   // this is a function to create a currentHour Array
   hours: function() {
     for (var currentHour = 0; currentHour < this.hourOpen; currentHour++) {
@@ -46,45 +42,28 @@ var Store = {
 
   // this is a function to write the totalPerHour to the document
 
-  column1: function(){
-    for (var i = 0 ; i < this.display.length; i++) {
+  column1: function() {
+    for (var i = 0 ; i < this.hourlySales.length; i++) {
       var parent1 = document.getElementById( 'salesreport');
       var child1 = document.createElement('li');
       parent1.appendChild(child1);
-      child1.textContent = this.display[i];
+      child1.textContent = this.hourlySales[i];
     }
   } ,
 
   //this is a function to write the current hour to the document
-  column2: function() {
-    for (var index = 0 ; index < this.display2.length; index++) {
+  column2: function() { 
+    Store.hours();
+    for (var index = 0 ; index < this.currentHour.length; index++) {
       var parent2 = document.getElementById('saleshours') ;
       var child2 = document.createElement('li');
       parent2.appendChild(child2);
-      child2.textContent = this.display2[index];
+      child2.textContent = this.currentHour[index];
     }
   }
 } ;
 
 Store.totalPerHour();
+Store.column1();
+Store.column2();
 
-
-// var display = Store.totalPerHour()[0];
-// var display2 = Store.hours()[0];
-// console.log(display + "This is it!");
-// console.log(display2 + "This is That");
-
-
-// for (var i = 0 ; i < display.length; i++) {
-//   var parent1 = document.getElementById( 'salesreport');
-//   var child1 = document.createElement('li');
-//   parent1.appendChild(child1);
-//   child1.textContent = display[i];
-// }
-
-// for (var index = 0 ; index < display2.length; index++) {
-//   var parent2 = document.getElementById('saleshours') ;
-//   var child2 = document.createElement('li');
-//   parent2.appendChild(child2);
-//   child2.textContent = display2[index];
-// }
