@@ -13,34 +13,49 @@ var Store = function(storeName, minCust, maxCust, hourOpen, cookiesPerCustomer )
   this.cookieSum = 0;
   var custPerHour = this.custPerHour;
 
-
   for (var currentHour = 0; currentHour < this.hourOpen; currentHour++) {
 
     // this creates a random customer amount 14 times
     custPerHour = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust) ;
-   
+
     // this finds the hourly sales total by multiplying cookiesPerCustomer by custPerHour
     this.hourlySales.push(Math.floor(this.cookiesPerCustomer * custPerHour));
 
-    // // this creates 1 array of average hourly sales
-    // this.hourlySales.push(this.hourlySales) ;
   }
-
+  // this sums all the cookies in the daily sales array
   for (var i = 0; i < this.hourOpen; i++) {
     this.cookieSum = (this.cookieSum + this.hourlySales[i]);
-    
   }
 
-  var tableEL = document.getElementById('salesreport');
-  for (var index = 0; index < this.hourOpen; index++) {
-    var ChildEl = document.createElement('td');
-    ChildEl.appendChild
+  // this write a table row to the salesreport table
+
+  this.tableEl = document.getElementById('salesreport');
+  console.log(this.tableEl);
+  this.row = document.createElement('tr');
+  this.tableEl.appendChild(this.row);
+  console.log(this.row);
+  this.head = document.createElement('td');
+  this.row.appendChild(this.head);
+  this.head.textContent = storeName ;
+
+  for (i = 0; i < this.hourlySales.length; i++) {
+    this.cell = document.createElement('td');
+    this.row.appendChild(this.cell);
+    this.cell.textContent = this.hourlySales[i];
   }
+
+  this.foot = document.createElement('td');
+  this.row.appendChild(this.foot);
+  this.foot.textContent = this.cookieSum;
 
 };
 
 var Seattle = new Store( 'Seattle' , 23, 63, 14, 6.3);
 console.log(Seattle);
+var Tokyo = new Store('Tokyo' , 3, 24, 14, 1.2);
+var Dubai = new Store('Dubai', 11, 38, 14, 3.7);
+var Paris = new Store('Paris', 20, 38, 14, 2.3);
+var Lima = new Store('Lima', 2, 16, 14, 4.6);
 
 // var Store = {
 
