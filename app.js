@@ -11,8 +11,7 @@ var Store = {
   cookiesPerCustomer: 6.3 ,
   hourlySales: [],
   currentHour: [],
-  display: this.totalPerHour()[0],
-  display2: this.hours()[0],
+  
 
   totalPerHour: function() {
     // this makes the function run 1 per hour open
@@ -34,6 +33,8 @@ var Store = {
     } return [this.hourlySales];
   } ,
 
+  display: totalPerHour()[0],
+  display2: this.hours()[0],
   // this is a function to create a currentHour Array
   hours: function() {
     for (var currentHour = 0; currentHour < this.hourOpen; currentHour++) {
