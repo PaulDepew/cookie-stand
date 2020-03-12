@@ -4,6 +4,8 @@
 
 var allStore = [];
 var hours = 14;
+var cookieSum = [];
+var times = ['6AM', '7AM', '8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM','6PM', '7PM'];
 
 var Store = function(storeName, minCust, maxCust, hourOpen, cookiesPerCustomer ) {
 
@@ -51,9 +53,12 @@ var Store = function(storeName, minCust, maxCust, hourOpen, cookiesPerCustomer )
   this.foot.textContent = this.cookieSum;
 
   allStore.push(this);
-  console.log(allStore);
+  cookieSum.push(this.cookieSum);
+  // console.log(allStore);
 };
 
+
+console.log(cookieSum);
 var Seattle = new Store( 'Seattle' , 23, 63, 14, 6.3);
 var Tokyo = new Store('Tokyo' , 3, 24, 14, 1.2);
 var Dubai = new Store('Dubai', 11, 38, 14, 3.7);
@@ -61,9 +66,33 @@ var Paris = new Store('Paris', 20, 38, 14, 2.3);
 var Lima = new Store('Lima', 2, 16, 14, 4.6);
 
 footerRow(allStore);
+headerRow(allStore);
+
+function headerRow() {
+  // First Row Cell
+  var tableEl = document.getElementById('salesreport');
+  var head = document.createElement('td');
+  var row = document.createElement('tr');
+  row.appendChild(head);
+  head.textContent = 'Locations' ;
+  tableEl.prepend(row);
+
+
+  for (var i = 0; i < times.length; i++) {
+    var cell = document.createElement('td');
+    row.appendChild(cell);
+    cell.textContent = times[i];
+  }
+
+  var foot = document.createElement('td');
+  row.appendChild(foot);
+  foot.textContent = 'Totals';
+
+
+}
+
 
 function footerRow() {
-  var dailySum =0;
   // First Row Cell
   var tableEl = document.getElementById('salesreport');
   var row = document.createElement('tr');
@@ -71,6 +100,12 @@ function footerRow() {
   var cell = document.createElement('td');
   row.appendChild(cell);
   cell.textContent = 'Totals';
+  var dailySum = 0;
+
+  for (var i = 0; i < 5; i++) {
+    dailySum = (dailySum + cookieSum[0]);
+    // console.log('This is dailySum ' + dailySum);
+  }
 
   // loop through
   for (var hour = 0; hour <= hours; hour++) {
@@ -80,12 +115,11 @@ function footerRow() {
     // loop through the stores
     for (var store = 0; store < allStore.length; store++){
       hourlySum = hourlySum + allStore[store].hourlySales[hour];
-      console.log(hourlySum);
+      // console.log(hourlySum);
     }
     cell.textContent = hourlySum;
     row.appendChild(cell);
 
-    dailySum += hourlySum;
   }
   cell - document.createElement('td');
   cell.textContent = dailySum;
