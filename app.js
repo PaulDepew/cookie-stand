@@ -1,6 +1,9 @@
 'use strict';
 
-// var locations = ['Seattle', 'Tokyo', 'Dubai', 'Paris', 'Lima' ] 
+// var locations = ['Seattle', 'Tokyo', 'Dubai', 'Paris', 'Lima' ]
+
+var allStore = [];
+var hours = 14;
 
 var Store = function(storeName, minCust, maxCust, hourOpen, cookiesPerCustomer ) {
 
@@ -16,7 +19,7 @@ var Store = function(storeName, minCust, maxCust, hourOpen, cookiesPerCustomer )
   for (var currentHour = 0; currentHour < this.hourOpen; currentHour++) {
 
     // this creates a random customer amount 14 times
-    custPerHour = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust) ;
+    custPerHour = Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust) ;
 
     // this finds the hourly sales total by multiplying cookiesPerCustomer by custPerHour
     this.hourlySales.push(Math.floor(this.cookiesPerCustomer * custPerHour));
@@ -27,13 +30,12 @@ var Store = function(storeName, minCust, maxCust, hourOpen, cookiesPerCustomer )
     this.cookieSum = (this.cookieSum + this.hourlySales[i]);
   }
 
-  // this write a table row to the salesreport table
-
+  // this writes a table row to the salesreport table
   this.tableEl = document.getElementById('salesreport');
-  console.log(this.tableEl);
+  // console.log(this.tableEl);
   this.row = document.createElement('tr');
   this.tableEl.appendChild(this.row);
-  console.log(this.row);
+  // console.log(this.row);
   this.head = document.createElement('td');
   this.row.appendChild(this.head);
   this.head.textContent = storeName ;
@@ -48,79 +50,45 @@ var Store = function(storeName, minCust, maxCust, hourOpen, cookiesPerCustomer )
   this.row.appendChild(this.foot);
   this.foot.textContent = this.cookieSum;
 
+  allStore.push(this);
+  console.log(allStore);
 };
 
 var Seattle = new Store( 'Seattle' , 23, 63, 14, 6.3);
-console.log(Seattle);
 var Tokyo = new Store('Tokyo' , 3, 24, 14, 1.2);
 var Dubai = new Store('Dubai', 11, 38, 14, 3.7);
 var Paris = new Store('Paris', 20, 38, 14, 2.3);
 var Lima = new Store('Lima', 2, 16, 14, 4.6);
 
-// var Store = {
+footerRow(allStore);
 
-//   storeName: 'Seattle',
-//   minCust: 23 ,
-//   maxCust: 65 ,
-//   hourOpen: 14 ,
-//   cookiesPerCustomer: 6.3 ,
-//   hourlySales: [],
-//   currentHour: [],
-//   cookieSum:  0,
+function footerRow() {
+  var dailySum =0;
+  // First Row Cell
+  var tableEl = document.getElementById('salesreport');
+  var row = document.createElement('tr');
+  tableEl.appendChild(row);
+  var cell = document.createElement('td');
+  row.appendChild(cell);
+  cell.textContent = 'Totals';
 
-//   totalPerHour: function() {
-//     // this makes the function run 1 per hour open
-//     for (var currentHour = 0; currentHour < this.hourOpen; currentHour++) {
+  // loop through
+  for (var hour = 0; hour <= hours; hour++) {
+    var hourlySum = 0;
+    cell = document.createElement('td');
+    row.appendChild(cell);
+    // loop through the stores
+    for (var store = 0; store < allStore.length; store++){
+      hourlySum = hourlySum + allStore[store].hourlySales[hour];
+      console.log(hourlySum);
+    }
+    cell.textContent = hourlySum;
+    row.appendChild(cell);
 
-//       // this creates a random customer amount 14 times
-//       var custPerHour = Math.floor(Math.random() * (this.maxCust - this.minCust)+ this.minCust) ;
-//       console.log(custPerHour);
+    dailySum += hourlySum;
+  }
+  cell - document.createElement('td');
+  cell.textContent = dailySum;
+  row.appendChild(cell);
+}
 
-//       // this finds the hourly sales total by multiplying cookiesPerCustomer by custPerHour
-//       var hourlySales = Math.floor(this.cookiesPerCustomer * custPerHour) ;
-
-//       // this creates 1 array of average hourly sales
-//       this.hourlySales.push(hourlySales);
-//       console.log(hourlySales);
-//       console.log(currentHour);
-//     }
-//   } ,
-
-//   sumCookies: function() {
-//     for (var currentHour = 0; currentHour < this.hourOpen; currentHour++) {
-//       this.cookieSum = Number(this.cookieSum + this.hourlySales[currentHour]);
-//     } console.log(this.cookieSum);
-//   },
-
-//   // this is a function to create a currentHour Array
-//   hours: function() {
-//     console.log(this);
-//     for (var currentHour = 0; currentHour < this.hourOpen; currentHour++) {
-//       this.currentHour.push(currentHour);
-//       console.log(currentHour);
-//     } return [this.currentHour];
-//   } ,
-
-//   togetherColumn: function() {
-//     Store.hours();
-//     var parent1 = document.getElementById( 'salesreport' );
-//     var head1 = document.createElement('p');
-//     parent1.appendChild(head1);
-//     head1.textContent = this.storeName ;
-
-//     for (var i = 0; i <this.hourlySales.length; i++) {
-//       var display = 'For the ' + this.currentHour[i] + ' hour, ' + this.storeName + ' sold ' + this.hourlySales[i] + ' cookies!' ;
-//       var child1 = document.createElement('li');
-//       parent1.appendChild(child1);
-//       child1.textContent = display;
-//     }
-//     var foot1 = document.createElement('li');
-//     parent1.appendChild(foot1);
-//     foot1.textContent = ' Total ' + this.cookieSum ;
-//   },
-
-// } ;
-
-// Store.totalPerHour();
-// Store.sumCookies();
-// Store.togetherColumn();
