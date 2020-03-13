@@ -7,11 +7,45 @@
     <a rel="stylesheet" src="stylesheet.css"></a>
 </head>
 <body>
-    <h1>THIS IS THE SALES REPORT!</h1>
-    <table id="salesreport">
+    <div id="form">
+        <form id='generateReport'>
+            <label>
+                Store Location
+                <input name='name'></input>
+            </label>
 
-    </table>
+            <fieldset>
+                <legend>Fill out to generate a new store!</legend>
+                <label>
+                    Minimum CpH
+                    <input name='minCust'></input>
+                </label>
+                <label>
+                    Maximum CpH
+                    <input name='maxCust'></input>
+                </label>
+                <label>
+                    Number of hours open
+                    <input name='hourOpen'></input>
+                </label>
+                <label>
+                   Average Cookies per Customer
+                   <input name='cookiesPerCustomer'></input> 
+                </label>
+                <button type="submit">Save Store!</button>
+            </fieldset>
+        </form>
 
-    <script src="app.js"></script>
+        <button id='show'>Show Report!</button>
+    </div>
+    <div id="report">
+        <h1>SALMON COOKIE SALES REPORT!</h1>
+        <table id="salesreport">
+    
+        </table>
+    
+        <script src="app.js"></script>
+    </div>
+    
 </body>
 </html>

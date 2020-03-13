@@ -1,11 +1,24 @@
 'use strict';
 
-// var locations = ['Seattle', 'Tokyo', 'Dubai', 'Paris', 'Lima' ]
-
 var allStore = [];
 var hours = 14;
 var cookieSum = [];
 var times = ['6AM', '7AM', '8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM','6PM', '7PM'];
+var formEl = document.getElementById('generateReport');
+
+function handleForm(event) {
+  event.preventDefault();
+  var inputs = event.target;
+
+  var newStore = new Store(inputs.name.value, inputs.minCust.value, inputs.maxCust.value, inputs.hourOpen.value, inputs.cookiesPerCustomer.value);
+  newStore.push(allStore);
+}
+
+formEl.addEventListener('submit', handleForm);
+
+// function handleButton(event) {
+//   documen
+// }
 
 var Store = function(storeName, minCust, maxCust, hourOpen, cookiesPerCustomer ) {
 
@@ -65,7 +78,6 @@ var Dubai = new Store('Dubai', 11, 38, 14, 3.7);
 var Paris = new Store('Paris', 20, 38, 14, 2.3);
 var Lima = new Store('Lima', 2, 16, 14, 4.6);
 
-footerRow(allStore);
 headerRow(allStore);
 
 function headerRow() {
@@ -126,3 +138,4 @@ function footerRow() {
   row.appendChild(cell);
 }
 
+footerRow(allStore);
