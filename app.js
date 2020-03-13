@@ -11,14 +11,10 @@ function handleForm(event) {
   var inputs = event.target;
 
   var newStore = new Store(inputs.name.value, inputs.minCust.value, inputs.maxCust.value, inputs.hourOpen.value, inputs.cookiesPerCustomer.value);
-  newStore.push(allStore);
+  allStore.push(newStore);
 }
-
 formEl.addEventListener('submit', handleForm);
 
-// function handleButton(event) {
-//   documen
-// }
 
 var Store = function(storeName, minCust, maxCust, hourOpen, cookiesPerCustomer ) {
 
@@ -68,6 +64,7 @@ var Store = function(storeName, minCust, maxCust, hourOpen, cookiesPerCustomer )
   allStore.push(this);
   cookieSum.push(this.cookieSum);
   // console.log(allStore);
+
 };
 
 
@@ -79,6 +76,7 @@ var Paris = new Store('Paris', 20, 38, 14, 2.3);
 var Lima = new Store('Lima', 2, 16, 14, 4.6);
 
 headerRow(allStore);
+footerRow(allStore);
 
 function headerRow() {
   // First Row Cell
@@ -137,5 +135,3 @@ function footerRow() {
   cell.textContent = dailySum;
   row.appendChild(cell);
 }
-
-footerRow(allStore);
