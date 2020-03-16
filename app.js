@@ -11,8 +11,11 @@ function handleForm(event) {
   var inputs = event.target;
 
   var newStore = new Store(inputs.name.value, inputs.minCust.value, inputs.maxCust.value, inputs.hourOpen.value, inputs.cookiesPerCustomer.value);
-  allStore.push(newStore);
+  // allStore.push(newStore);
+  renderTable();
+  console.log(newStore);
 }
+console.log(allStore);
 formEl.addEventListener('submit', handleForm);
 
 
@@ -41,7 +44,14 @@ var Store = function(storeName, minCust, maxCust, hourOpen, cookiesPerCustomer )
     this.cookieSum = (this.cookieSum + this.hourlySales[i]);
   }
 
-  // this writes a table row to the salesreport table
+  allStore.push(this);
+  cookieSum.push(this.cookieSum);
+  // console.log(allStore);
+};
+
+
+Store.prototype.writeRow = function () {
+// this writes a table row to the salesreport table
   this.tableEl = document.getElementById('salesreport');
   // console.log(this.tableEl);
   this.row = document.createElement('tr');
@@ -49,9 +59,9 @@ var Store = function(storeName, minCust, maxCust, hourOpen, cookiesPerCustomer )
   // console.log(this.row);
   this.head = document.createElement('td');
   this.row.appendChild(this.head);
-  this.head.textContent = storeName ;
+  this.head.textContent = this.storeName ;
 
-  for (i = 0; i < this.hourlySales.length; i++) {
+  for (var i = 0; i < this.hourlySales.length; i++) {
     this.cell = document.createElement('td');
     this.row.appendChild(this.cell);
     this.cell.textContent = this.hourlySales[i];
@@ -60,10 +70,6 @@ var Store = function(storeName, minCust, maxCust, hourOpen, cookiesPerCustomer )
   this.foot = document.createElement('td');
   this.row.appendChild(this.foot);
   this.foot.textContent = this.cookieSum;
-
-  allStore.push(this);
-  cookieSum.push(this.cookieSum);
-  // console.log(allStore);
 
 };
 
@@ -76,7 +82,17 @@ var Paris = new Store('Paris', 20, 38, 14, 2.3);
 var Lima = new Store('Lima', 2, 16, 14, 4.6);
 
 headerRow(allStore);
-footerRow(allStore);
+
+function renderTable() {
+  var table = document.getElementById('salesreport');
+  table.innerHTML = null ;
+  for (var store = 0; store < allStore.length; store++) {
+    allStore[store].writeRow();
+  }
+
+  footerRow();
+}
+renderTable();
 
 function headerRow() {
   // First Row Cell
@@ -86,6 +102,8 @@ function headerRow() {
   row.appendChild(head);
   head.textContent = 'Locations' ;
   tableEl.prepend(row);
+  row.setAttribute('class', 'header');
+
 
 
   for (var i = 0; i < times.length; i++) {
@@ -97,7 +115,6 @@ function headerRow() {
   var foot = document.createElement('td');
   row.appendChild(foot);
   foot.textContent = 'Totals';
-
 
 }
 
@@ -113,7 +130,7 @@ function footerRow() {
   var dailySum = 0;
 
   for (var i = 0; i < 5; i++) {
-    dailySum = (dailySum + cookieSum[0]);
+    dailySum = (dailySum + cookieSum[i]);
     // console.log('This is dailySum ' + dailySum);
   }
 
@@ -129,6 +146,7 @@ function footerRow() {
     }
     cell.textContent = hourlySum;
     row.appendChild(cell);
+    row.setAttribute('class', 'footer');
 
   }
   cell - document.createElement('td');
