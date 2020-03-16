@@ -4,13 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sales Report</title>
-    <a rel="stylesheet" src="stylesheet.css"></a>
+    <link href="https://fonts.googleapis.com/css2?family=Liu+Jian+Mao+Cao&family=Open+Sans&family=Playfair+Display&family=Raleway:wght@300&display=swap" rel="fonts">
+    <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-    <ul>
+    <header>
+       <a href="index.html" title='Home!'> <img id='logo' src="Photos/salmon.png" alt="logo"> </a>
+       <h1>SALMON COOKIES!</h1>
+       <nav>
+           <ul id="nav">
+               <li> <a href="">ABOUT US</a></li>
+               <li><a href="">PURCHASE ONLINE</a></li>
+               <li><a href="">SOCIAL</a></li>
+              
+           </ul>
+       </nav>
+       <hr>
+    </header>
 
-    </ul>
+    <div id="form">
+        <form id='generateReport'>
+            <label>
+                Store Location
+                <input name='name'></input>
+            </label>
 
-    <script src="app.js"></script>
+            <fieldset>
+                <legend>Fill out to generate a new store!</legend>
+                <ul>
+                <li> 
+                    <label>
+                    Minimum CpH
+                    <input name='minCust' type="number"></input>
+                </label>
+                </li>
+                <li>
+                <label>
+                    Maximum CpH
+                    <input name='maxCust' type="number"></input>
+                </label>
+                </li>
+                <li>
+                <label>
+                    Number of hours open
+                    <input name='hourOpen' type="number"></input>
+                </label>
+                </li>
+                <li>
+                <label>
+                   Average Cookies per Customer
+                   <input name='cookiesPerCustomer' type="number"></input> 
+                </label>
+                </li>
+                <li>
+                <button type="submit">Save Store!</button>
+                </li>
+                </ul>
+            </fieldset>
+        </form>
+    </div>
+    <div id="report">
+        <h1>SALMON COOKIE SALES REPORT!</h1>
+        <table id="salesreport">
+    
+        </table>
+    
+        <script src="app.js"></script>
+    </div>
+    
 </body>
 </html>

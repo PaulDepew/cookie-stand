@@ -1,0 +1,235 @@
+/* Color values
+#734B5E - Dark Red
+#BCBDC0 - Lite canvas
+#565857 - Brown
+#8A8D91 - dark canvas
+#F5D3C8 - pink
+*/
+/* 
+font-family: 'Raleway', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Playfair Display', serif;
+font-family: 'Liu Jian Mao Cao', cursive; */
+
+
+body {
+    background-color: #bcbdc0;
+    width: 1000px;
+}
+
+header{
+    width: 100%;
+    background-image: linear-gradient(#8A8D91, #BCBDC0 );
+    margin: 0px;
+}
+
+header img#logo {
+    width: 300px;
+    float: left;
+    margin-right: 20px;
+}
+
+header img#logo:hover {
+    width: 300px;
+    float: left;
+    margin-right: 20px;
+    transform: rotateY(180deg);
+} 
+
+header hr {
+    background-color: #8a8d91;
+    height: 1px;
+    border: none;
+}
+
+header h1 {
+    font-family: 'Raleway', sans-serif;
+    padding-top: 25px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    color: #734B5E;
+}
+
+
+header li {
+    display: inline-block;
+    list-style-type: none;
+    padding: 5px;
+    text-decoration: none;
+}
+
+header a {
+    text-decoration: none;
+    color: #734B5E;
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+header a:visited {
+    color: #565857 ;
+}
+header a:hover {
+    color: #F5D3C8;
+}
+
+img#grandpa {
+    width:100%;
+    box-shadow: 2px 2px 5px #565857;
+}
+div#locations {
+    background-color :#8A8D91 ;
+    float: left;
+    width: 25%;
+    border-radius: 10px;
+    margin-right: 25px;
+    margin-left: 25px;
+    padding:25px;
+    box-shadow: 5px 5px 5px #565857;
+}
+
+div#locations h2 {
+    font-family: 'Raleway', sans-serif;
+    color: #734B5E;
+    margin-left: 60px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+div#locations ul {
+    list-style: none;
+    font-family: 'Open Sans', sans-serif;
+    color: #565857;
+    margin-left: 15px;
+    margin-top: 5px;
+}
+
+div#aboutus {
+    background-color :#8A8D91 ;
+    display: inline-block;
+    width: 55%;
+    border-radius: 10px;
+    margin-right: 25px;
+    padding:25px;
+    box-shadow: 5px 5px 5px #565857;
+}
+
+div#aboutus h2 {
+    color: #734B5E;
+    font-family: 'Liu Jian Mao Cao', cursive;
+}
+
+footer {
+    background-image: linear-gradient( #BCBDC0, #8A8D91 );
+    width: 100%;
+}
+
+footer a {
+    text-decoration: none;
+    color: #734B5E;
+    font-family: 'Open Sans', sans-serif;
+    display: inline-block;
+    margin-left: 50%;
+    margin-top: 25px;
+    margin-bottom: 5px;
+}
+
+footer a:visited {
+    color: #565857 ;
+}
+footer a:hover {
+    color: #F5D3C8;
+}
+
+div#form {
+    background-color :#734B5E ;
+    /* background-image: linear-gradient( #BCBDC0, #8A8D91 ); */
+    float: left;
+    width: 35%;
+    border-radius: 10px;
+    margin-right: 25px;
+    margin-left: 25px;
+    padding:15px;
+    box-shadow: 5px 5px 5px #565857;
+    font-family: 'Raleway', sans-serif;
+    color: #BCBDC0;
+}
+
+div#form input {
+    border-radius: 5px;
+    border: none;
+    padding: 2px;
+}
+div#form label {
+    border-radius: 5px;
+    padding: 2px;
+}
+
+div#form ul {
+    list-style: none;
+    margin-left: 0px;
+    padding: 5px;
+}
+div#form button {
+    background-color:#565857 ;
+    border: none;
+    border-radius: 5px;
+    color:#BCBDC0 ;
+    height: 30px;
+    width: 100px;
+    margin-top: 25px;
+    font-size: 16px;
+}
+
+div#form button:hover {
+    background-color:#F5D3C8 ;
+    border: none;
+    border-radius: 5px;
+    color:#565857 ;
+    height: 30px;
+    width: 100px;
+    margin-top: 25px;
+    font-size: 16px;
+}
+
+div#report {
+    background-color :#734B5E ;
+    /* background-image: linear-gradient( #BCBDC0, #8A8D91 ); */
+    float: left;
+    width: 50%;
+    border-radius: 10px;
+    /* margin-right: 25px; */
+    /* margin-left: 25px; */
+    padding:15px;
+    box-shadow: 5px 5px 5px #565857;
+    font-family: 'Raleway', sans-serif;
+    color: #565857;
+}
+
+div#report h1 {
+    font-size: 24px;
+    padding: 0px;
+    margin: 0px, 0px, 15px, 0px;
+    color:#BCBDC0 ;
+}
+
+div#report table {
+    width: 100%;
+    border-spacing: 0px;
+    border-collapse: collapse;
+    
+}
+
+div#report tr {
+    background-color: #BCBDC0;
+
+}
+
+div#report td {
+    border-collapse: collapse;
+    
+}
+
+div#report tr.footer {
+    color: darkred;
+    background-image: linear-gradient(#BCBDC0, #8A8D91);
+}
