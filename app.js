@@ -6,18 +6,6 @@ var cookieSum = [];
 var times = ['6AM', '7AM', '8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM','6PM', '7PM'];
 var formEl = document.getElementById('generateReport');
 
-function handleForm(event) {
-  event.preventDefault();
-  var inputs = event.target;
-
-  var newStore = new Store(inputs.name.value, inputs.minCust.value, inputs.maxCust.value, inputs.hourOpen.value, inputs.cookiesPerCustomer.value);
-  // allStore.push(newStore);
-  renderTable();
-  console.log(newStore);
-}
-console.log(allStore);
-formEl.addEventListener('submit', handleForm);
-
 
 var Store = function(storeName, minCust, maxCust, hourOpen, cookiesPerCustomer ) {
 
@@ -83,16 +71,6 @@ var Lima = new Store('Lima', 2, 16, 14, 4.6);
 
 headerRow(allStore);
 
-function renderTable() {
-  var table = document.getElementById('salesreport');
-  table.innerHTML = null ;
-  for (var store = 0; store < allStore.length; store++) {
-    allStore[store].writeRow();
-  }
-
-  footerRow();
-}
-renderTable();
 
 function headerRow() {
   // First Row Cell
@@ -106,7 +84,7 @@ function headerRow() {
 
 
 
-  for (var i = 0; i < times.length; i++) {
+  for (var i = 0; i < allStore.length; i++) {
     var cell = document.createElement('td');
     row.appendChild(cell);
     cell.textContent = times[i];
@@ -129,7 +107,7 @@ function footerRow() {
   cell.textContent = 'Totals';
   var dailySum = 0;
 
-  for (var i = 0; i < 5; i++) {
+  for (var i = 0; i < allStore.length; i++) {
     dailySum = (dailySum + cookieSum[i]);
     // console.log('This is dailySum ' + dailySum);
   }
@@ -153,3 +131,29 @@ function footerRow() {
   cell.textContent = dailySum;
   row.appendChild(cell);
 }
+
+function renderTable() {
+  var table = document.getElementById('salesreport');
+  table.innerHTML = null ;
+  for (var store = 0; store < allStore.length; store++) {
+    allStore[store].writeRow();
+  }
+
+  footerRow();
+}
+renderTable();
+
+function handleForm(event) {
+  event.preventDefault();
+  var inputs = event.target;
+
+  var newStore = new Store(inputs.name.value, inputs.minCust.value, inputs.maxCust.value, inputs.hourOpen.value, inputs.cookiesPerCustomer.value);
+  // allStore.push(newStore);
+  footerRow.innerHTML = '';
+  renderTable.innerHTML = '';
+  footerRow();
+  renderTable();
+  console.log(newStore);
+}
+console.log(allStore);
+formEl.addEventListener('submit', handleForm);
